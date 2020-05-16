@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  nature-exporter:
+    image: skyblue3350/nature-exporter
+    build: .
+    ports:
+      - "9315:9315"
+    environment:
+      NATURE_TOKEN: ${NATURE_TOKEN}
+
