@@ -53,7 +53,8 @@ def sensor_request_process_request(token):
         device_name = device["firmware_version"].split("/")[0]
         if device_name == "Remo":
             for label, metrics in remo_metrics.items():
-                metrics.labels(device["name"]).set(device["newest_events"][label]["val"])
+                if label in device["newest_events"]:
+                    metrics.labels(device["name"]).set(device["newest_events"][label]["val"])
 
     update_api_info(res.headers)
 
