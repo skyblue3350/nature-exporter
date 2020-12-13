@@ -1,14 +1,12 @@
-FROM python:3-slim as builder
+FROM python:3 as builder
 
 WORKDIR /opt/app
 
-RUN apt update -y \
-  && apt install -y libffi-dev libssl-dev \
-  && pip install poetry
+RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 
 COPY pyproject.toml poetry.lock ./
 
-RUN poetry export -f requirements.txt > requirements.txt
+RUN . /root/.poetry/env && poetry export -f requirements.txt > requirements.txt
 
 FROM python:3-slim
 
