@@ -2,7 +2,9 @@ FROM python:3-slim as builder
 
 WORKDIR /opt/app
 
-RUN apt update -y && apt install gcc -y && pip install poetry
+RUN apt update -y \
+  && apt install -y libffi-dev libssl-dev \
+  && pip install poetry
 
 COPY pyproject.toml poetry.lock ./
 
