@@ -59,8 +59,7 @@ def sensor_request_process_request(token):
     update_api_info(res.headers)
 
 
-def main(port=9315):
-    token = os.environ.get("NATURE_TOKEN", None)
+def main(token, port):
     if token is None:
         raise RuntimeError("Required: NATURE_TOKEN environment")
 
@@ -73,4 +72,6 @@ def main(port=9315):
 
 
 if __name__ == "__main__":
-    main()
+    token = os.environ.get("NATURE_TOKEN", None)
+    port = int(os.environ.get("NATURE_PORT", 9315))
+    main(token, port)

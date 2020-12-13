@@ -18,4 +18,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 EXPOSE 9315
-CMD python -m nature_exporter
+CMD python -u -m nature_exporter
