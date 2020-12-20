@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nature-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nature-exporter
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9315"
+      labels:
+        app: nature-exporter
+    spec:
+      containers:
+      - name: nature-exporter
+        image: ghcr.io/skyblue3350/nature-exporter:master
+        env:
+          - name: NATURE_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: nature
+                key: NATURE_TOKEN
+          - name: NATURE_PORT
+            value: "9315"

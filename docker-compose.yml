@@ -2,7 +2,7 @@ version: "3"
 
 services:
   nature-exporter:
-    image: skyblue3350/nature-exporter
+    image: ghcr.io/skyblue3350/nature-exporter
     build: .
     ports:
       - "9315:9315"
