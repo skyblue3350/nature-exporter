@@ -2,7 +2,7 @@
 
 this Prometheus exporter get data from Nature Remo Cloud API
 
-### setup
+## setup
 
 set token
 
@@ -21,6 +21,6 @@ docker-compose up -d
 ## kubernetes
 
 ```
-kubectl create secret generic nature --from-file .env
+kubectl create secret generic nature --from-env-file .env
 kubectl apply -f deploy deployment.yaml
 ```
